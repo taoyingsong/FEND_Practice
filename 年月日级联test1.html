@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">	
+</head>
+<body>
+<form id="form1" name="form1" method="post" action="">
+  请选择日期：
+  <select name="year" id="year">
+    <option value="0">--</option>
+    <option value="1999">1999</option>
+    <option value="2000">2000</option>
+    <option value="2001">2001</option>
+  </select>年
+  <select name="month" id="month">
+    <option value="0">--</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+    <option value="11">11</option>
+    <option value="12">12</option>
+  </select>月
+  <select name="day" id="day">
+    <option value="0">--</option>
+  </select>日
+</form>
+
+<script type="text/javascript">
+	
+	//添加事件兼容方法
+	var addEvent = document.addEventListener ?
+	        function (elem, type, listener, useCapture) {
+	            elem.addEventListener(type, listener, useCapture);
+	        } :
+	        function (elem, type, listener, useCapture) {
+	            elem.attachEvent('on' + type, listener);
+	        };
+	 
+	 var year = document.getElementById('year');
+	 var month = document.getElementById('month');
+	 var day = document.getElementById('day');
+	  
+	 //初始化天
+	 function initDate(yearVal, monthVal) {
+	     day.options.length = 0;
+	     day.add(new Option('--', '0'));
+	     if (yearVal > 0 && monthVal > 0) {
+	         var date0 = new Date(yearVal, monthVal, 0);
+	         var lastDay = date0.getDate();
+	         for (var i = 1; i <= lastDay; i++) {
+	             day.add(new Option(i, i));
+	         }
+	     }
+	 }
+	  
+	 //年改变事件
+	 addEvent(year, 'change', function () {
+	     month.options[0].selected = true;
+	     day.options[0].selected = true;
+	 });
+	  
+	 //月改变事件
+	 addEvent(month, 'change', function () {
+	     initDate(year.value, month.value);
+	 })
+
+
+</script>	
+</body>
+</html>

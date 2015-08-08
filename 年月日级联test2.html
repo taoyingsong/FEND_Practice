@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  请选择日期：
+  <select name="year" id="year">
+  </select>
+  年
+  <select name="month" id="month">
+  </select>
+  月
+  <select name="day" id="day">
+  </select>
+  日
+</form>
+
+<script type="text/javascript">
+  // 定义变量
+  var sel_year,sel_month,sel_day;
+
+  // 加载函数
+  window.onload = function(){
+    // 获取元素
+    sel_year = document.getElementById("year");
+    sel_month = document.getElementById("month");
+    sel_day = document.getElementById("day");
+    
+    fillDate();
+    
+    // 绑定事件
+    sel_year.onchange = changeDay;
+    sel_month.onchange = changeDay;
+  };
+
+  // 填充日期
+  function fillDate(){
+    // 获取系统日期时间
+    var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth()+1;
+    var day = now.getDate();
+    
+    // 填充年份
+    for(var i=year; i>=year-50; i--){
+      var option = new Option(i,i);  // 把年份转为选项
+      sel_year.options.add(option);
+    }
+    
+    // 填充月份
+    for(var i=1; i<=12; i++){
+      var option = new Option(i,i);  // 把月份转为选项
+      sel_month.options.add(option);
+    }
+    sel_month.value = month;
+    
+    // 填充天数
+    for(var i=1; i<=getDays(year,month); i++){
+      var option = new Option(i,i);  // 把日转为选项
+      sel_day.options.add(option);
+    }
+    sel_day.value = day;
+  }
+
+  // 获取天数的函数
+  function getDays(year,month){
+    var days = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+    if(year%400==0 || year%4==0&&year%100!=0)
+      days[1]++;
+    return days[month-1];
+  }
+
+  // 变换日的函数
+  function changeDay(){
+    var year = sel_year.value;
+    var month = sel_month.value;
+    // 清空天数
+    sel_day.options.length = 0;
+    // 填充天数
+    for(var i=1; i<=getDays(year,month); i++){
+      var option = new Option(i,i);  // 把日转为选项
+      sel_day.options.add(option);
+    }
+  }
+
+
+
+
+</script>
+</body>
+</html>
