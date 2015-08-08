@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <title>函数式编程技术，柯里化（currying）思想解析</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    /*
+    			function.bind(obj, args)
+    			1、obj为要绑定在函数上的对象
+    			2、args为要绑定在函数上的函数参数 0~n个
+    			3、返回一个新函数，该函数会当做obj的方法调用，并向它传入args参数
+    			通过柯里化（currying）使得js中的函数支持了形参默认值设置
+    		*/
+
+    //为了帮助理解这里写一个小例子(来自于Javascript 权威指南第六版 p191)
+    /*demo1
+			创建一个类似sum的函数，函数的this为null,第一个参数为1并隐去（这样形参只剩y），调用时传递的一个实参给y
+		*/
+    var sum = function(x, y) {
+            return x + y;
+        }
+        //创建一个类似于sum的新函数，但this的值绑定到null
+        //并且新函数第一个参数绑定到1并隐去，这个新函数期望只传入一个实参
+    var succ = sum.bind(null, 1);
+
+    console.log(succ(2)); //输出 3； x 绑定到1，并传入2作为实参
+
+
+
+    /*demo2另外一个做累计计算的函数*/
+    var sum2 = function(y, z) {
+        return this.x + y + z;
+    }
+
+    //绑定this 和 y
+    var bindSum2 = sum2.bind({
+        x: 1
+    }, 2);
+    console.log(bindSum2(3)); //输出 6； this.x 绑定到1，y绑定到2， z 绑定到3.
+
+
+
+    /*demo3*/
+    function sum() {
+        var result = 0;
+        for (var i = 0, n = arguments.length; i < n; i++) {
+            result += arguments[i];
+        }
+        return result;
+    }
+    var newSum = sum.bind(null, 1, 2); //此处this值绑定到null，第一个和第二个参数绑定到1、2
+    newSum(2); //5
+    newSum(2, 3, 4); //12
+
+
+    /*练习：
+			函数 add 可以实现连续的加法运算
+			函数 add 语法如下 add(num1)(num2)(num3)...; //注意这里是省略号哟，可无限
+			使用举例如下：
+			
+			add(10)(10); // 20
+			add(10)(20)(50); // 80
+			add(10)(20)(50)(100); // 180
+
+			思路：
+			1、2个以上参数相加：闭包
+			2、连续括号：返回的为函数
+            3、输出为值：返回的函数toString,valueOf有重写
+            由2,3 》 返回的结果即是可执行函数，又能转换为值
+			注意：
+			绑定null时需要自己添加toString函数用于alert参数调用，因为null自身没有此函数（好像有也要重写）
+            最外层闭包保存变量，里层保证不断返回函数
+		*/
+    //柯里化 解决方案 重写toString，valueOf后f即为函数又能输出值(不知为什是根据toString输出的)
+    function add(x) {
+        function helper(y, x) {
+            var sum = y + x;
+            var f = helper.bind(null, sum);
+            f.toString = function() {
+                return '' + sum;
+            };
+            f.valueOf = function() {
+                return sum;
+            };
+            return f;
+        }
+        return helper(x, 0);
+    }
+
+    //其他解决方案 重写toString，valueOf后sum即为函数又能输出值
+    function add(x) {
+        function result() {
+            return x;
+        }
+        sum.toString = sum.valueOf = result;
+
+        function sum(y) {
+            return add(x + y);
+        }
+        return sum;
+    }
+    </script>
+</body>
+
+</html>
