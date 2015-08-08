@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <script type="text/javascript">
+    /*闭包基础理解*/
+    function a() {
+            var x = 0;
+            return function(y) {
+                x += y;
+                return x;
+            }
+        }
+        //b1为一个函数对象,b1(1),b2(2)为两个不同情况，但是用的外层作用域a是一个
+    var b1 = a();
+    console.log(b1(1));
+    console.log(b1(3));
+    //b2,b1为两个不同的函数对象，对应的外层作用域a是不同的，当然global作用域还是相同的
+    var b2 = a();
+    console.log(b2(2));
+
+
+    /*练习：列表事件绑定*/
+    //若干个nodes都能保留下和自己对应的i
+    var addHandlers = function(nodes) {
+        var helper = function(i) {
+            return function() {
+                alert(i);
+            }
+        }
+        for (var i = 0; i < nodes.length; i++) {
+        	nodes[i].onclick = helper(i);	
+        }
+    }
+    </script>
+</body>
+
+</html>
