@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">	
+</head>
+<body>
+	<script type="text/javascript">
+		/*递归：阶乘
+			求：20!
+		 */
+		 var jiecheng = function(x) {
+		 	if(x === 1) {
+		 		return 1; 
+		 	}
+		 	return x * arguments.callee(x-1);	
+		 }
+
+		 alert(jiecheng(3));
+		 alert(jiecheng(20));
+	</script>
+	<script type="text/javascript">
+	/*二分
+	函数search实现在一个已排序的数字类型数组中查找指定数字的功能。
+	search函数语法为
+	var idx = search(arr, dst);
+	使用举例如下： 
+	var arr = [1, 2, 4, 6, 7, 9, 19,20, 30, 40, 45, 47]；
+	var idx = search(arr, 45)； // 执行后idx值等于10
+	请给出函数search的代码实现，要求不能使用Array的原型方法，且算法时间复杂度低于O(n)。
+	 */
+	 var search = function(arr, dst) {
+	 	var low = 0;
+	 	var	heigh = arr.length - 1;
+	 	var	mid;
+	 	while(low <= heigh) {
+
+	 		// 这里没用全局方法parseInt,因为发现功能介绍为“将字符串转化成数字”
+	 		mid = Math.round((low + heigh) / 2);
+	 		if(arr[mid] == dst) {
+	 			return mid;
+	 		}
+	 		else if(arr[mid] > dst) {
+	 			heigh = mid - 1;
+	 		}
+	 		else if(arr[mid] < dst) {
+	 			low = mid + 1;
+	 		}
+	 	}
+	 	return "无此值";
+	 }
+	 var arr = [1, 2, 4, 6, 7, 9, 19,20, 30, 40, 45, 47];	
+	 var value = search(arr, 199);
+	 alert(value);
+	</script>	
+</body>
+</html>
