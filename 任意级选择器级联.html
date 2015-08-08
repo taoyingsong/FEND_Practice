@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">	
+</head>
+<body>
+	<form action="#" id="content">
+        <select>
+            <option value="select">请选择一项</option>
+        </select>
+        <select>
+            <option value="select">请选择二项</option>          
+        </select>
+        <select>
+            <option value="select">请选择三项</option>          
+        </select>
+         <select>
+            <option value="select">请选择三项</option>          
+        </select>
+         <select>
+            <option value="select">请选择三项</option>          
+        </select>
+    </form>	
+<script type="text/javascript">
+
+	/*生成测试数据函数*/
+ 	var count = 0;
+    // limit - 列表的长度
+    // deep - 数据的层级数
+    // 返回一个测试数据列表
+    var genList = function(limit,deep){
+        var ret = [];
+        if (!deep){
+            return ret;
+        }
+        for(var i=0,it;i<limit;i++){
+            it = deep+'.'+i+'.'+(count++);
+            ret.push({
+                text:it,
+                value:it,
+                list:genList(limit,deep-1)
+            });
+        }
+        return ret;
+    };
+
+
+
+    /*任意级选择器级联控件封装*/
+	function cascade(selectList,data){
+        // 取第n级的数据列表
+        var getList = function(n){
+            var ret = data;
+            for(var i=0,it;i<n;i++){
+                // 默认选中第一项,selectedIndex下拉列表选择项索引，如果未选择，值为-1.
+                it = Math.max(0,selectList[i].selectedIndex);
+                ret = (ret[it]||{}).list;
+            }
+            return ret;
+        };
+         
+        // 选择器填充
+        var fillSelector = function(select,list){
+            for(var i=select.length-1;i>=0;i--){
+                select.remove(i);
+            }
+            if (!list||!list.length){
+                return;
+            }
+            for(var i=0,l=list.length,it;i<l;i++){
+                it = list[i];
+                select.add(new Option(it.text,it.value));
+            }
+        };
+ 
+        // 第几级选择器变化事件
+        var onSelectChange = function(i){
+            // 1. 填充第i+1级选择器
+            // 2. 触发第i+1级选择器的change逻辑
+            var next = i+1;
+            if (next>=selectList.length){
+                return;
+            }
+            fillAndChange(next);
+        };
+        // 填充第几级选择器并触发该级选择器的change逻辑
+        var fillAndChange = function(index){
+            fillSelector(
+                selectList[index],
+                getList(index)
+            );
+            onSelectChange(index);
+        };
+ 
+        // 事件辅助函数，保存索引
+        var helper = function(index){
+            return function(){
+                onSelectChange(index);
+            };
+        };
+        for(var i=0,l=selectList.length-1;i<l;i++){
+            // 实践一下闭包的知识
+            // 或者针对高版本用bind，如 onSelectChange.bind(null,i)
+            selectList[i].onchange = helper(i);
+        }
+ 
+        // 初始化数据
+        fillAndChange(0);
+    }
+
+/*自造测试数据*/
+var data = [
+    {
+        text:'省/直辖市',
+        value:'0',
+        list:[
+            {
+                text:'区',
+                value:'0.0',
+                list:[
+                    {
+                        text:'路',
+                        value:'0.0.0',
+                        list:[]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        text:'北京',
+        value:'1',
+        list:[
+            {
+                text:'朝阳区',
+                value:'1.1',
+                list:[
+                    {
+                        text:'朝阳路',
+                        value:'1.1.1',
+                        list:[]
+                    }
+                ]
+            },
+            {
+                text:'西城区',
+                value:'1.2',
+                list:[
+                    {
+                        text:'西城路',
+                        value:'1.2.1',
+                        list:[]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        text:'上海',
+        value:'2',
+        list:[
+            {
+                text:'黄浦区',
+                value:'2.1',
+                list:[
+                    {
+                        text:'南京路',
+                        value:'2.1.1',
+                        list:[]
+                    }
+                ]
+            },
+            {
+                text:'长宁区',
+                value:'2.2',
+                list:[
+                    {
+                        text:'延安路',
+                        value:'2.2.1',
+                        list:[]
+                    }
+                ]
+            }
+        ]
+    }
+];      
+
+	/*测试代码*/
+	var form = document.getElementById("content");
+    var list = form.getElementsByTagName('select');
+    var testData = genList(4, 5);
+    cascade(list, testData);
+	// cascade(list, data);
+
+</script>
+</body>
+</html>
