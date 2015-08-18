@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>style - 更新样式</title>
+	<style>
+		button{padding: 4px 5px;margin-left: 10px;}
+		.u-txt{width: 215px;padding: 4px 5px;border: 1px solid #ababab;border-radius: 3px;box-shadow: 2px 2px 3px #ededed inset;font-size: 14px;font-weight: bold;}
+	</style>
+</head>
+<body>
+	<input id="mobile" class="u-txt" value="13564782365">
+	<button id="update">更新样式</button>
+	<script src="util.js"></script>
+	<script>
+		Util.addEventListener($('update'), 'click', updateStyle);
+
+		function updateStyle(){
+			var element = $('mobile');
+
+			element.style.borderColor = 'red';
+			element.style.color = 'red';
+		}
+
+	</script>
+</body>
+</html>

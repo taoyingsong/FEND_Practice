@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>getComputedStyle - 获取样式</title>
+	<style>
+		div{margin: 20px auto;}
+		button{padding: 4px 5px;margin-left: 10px;}
+		input{width: 215px;padding: 4px 5px;border: 1px solid #ababab;border-radius: 3px;box-shadow: 2px 2px 3px #ededed inset;font-size: 14px;font-weight: bold;}
+
+	</style>
+</head>
+<body>
+	<div>
+		<input id="mobile0" value="13564782365">
+		<button id="get0">获取颜色</button>
+	</div>
+	<div>
+		<input id="mobile1" value="13564782365" style="color: red;">
+		<button id="get1">获取颜色</button>
+	</div>
+	<script src="util.js"></script>
+	<script>
+		Util.addEventListener($('get0'), 'click', getStyle0);
+		Util.addEventListener($('get1'), 'click', getStyle1);
+
+		function getStyle0(){
+			var element = $('mobile0');
+			
+			alert(window.getComputedStyle(element).color);
+		}
+
+		function getStyle1(){
+			var element = $('mobile1');
+
+			alert(window.getComputedStyle(element).color);
+		}
+
+	</script>
+</body>
+</html>
