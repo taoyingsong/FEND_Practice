@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>innerHTML</title>
+</head>
+<body>
+    <div id="users">
+        <h2>8882人在学习该课程:</h2>
+        <ul>
+            <li class="user">Satoshi</li>
+            <li class="user">春来草青</li>
+            <li class="user last">Tom</li>
+        </ul>
+    </div>
+    <script>
+    	var users = document.getElementById('users');
+    	alert(users.innerHTML);
+
+    	var ul = users.getElementsByTagName('ul')[0];
+    	// alert(ul.innerHTML);
+
+    	var user_last = users.getElementsByClassName('user')[2];
+    	// alert(user_last.innerHTML);
+    	// alert(user_last.innerText);
+
+    	// users.innerHTML = '<p>hello,<span>mooc</span></p>';
+    </script>
+</body>
+</html>

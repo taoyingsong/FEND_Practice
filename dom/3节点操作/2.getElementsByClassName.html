@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>添加用户</title>
+    <style>
+    	html, body,h2, ul, li{margin: 0;padding: 0;}
+		body{font-family: arial;}
+		#users{margin: 30px;width: 210px;box-shadow: 0px 1px 2px #bbb;}
+		h2{height: 50px;line-height: 50px;padding-left: 20px;font-size: 18px;border-bottom: 1px solid #dfdfdf;}
+		ul{padding: 10px 0;overflow: hidden;}
+		.user{float: left;width: 50px;margin: 10px;list-style: none;}
+		.user a{color: #666;text-decoration: none;font-size: 12px;}
+    </style>
+</head>
+<body>
+    <div id="users">
+        <h2>8882人在学习该课程:</h2>
+        <ul>
+            <li class="user">
+                <img src="1.jpg">
+                <a href="/user/1">Satoshi</a>
+            </li>
+            <li class="user">
+                <img src="2.jpg">
+                <a href="/user/2">春来草青</a>
+            </li>
+            <li class="user last">
+                <img src="3.jpg">
+                <a href="/user/3">Kash</a>
+            </li>
+        </ul>
+    </div>
+    <script>
+    	function getElementsByClassName(element, names) {
+		    if (element.getElementsByClassName) {
+		        return element.getElementsByClassName(names);
+		    } else {
+		        var elements = element.getElementsByTagName('*');
+		        var result = [];
+		        var element,
+		            classNameStr,
+		            flag;
+		        names = names.split(' ');
+		        for (var i = 0; element = elements[i]; i++) {
+		            classNameStr = ' ' + element.className + ' ';
+		            flag = true;
+		            for (var j = 0, name; name = names[j]; j++) {
+		                if (classNameStr.indexOf(' ' + name + '') == -1) {
+		                    flag = false;
+		                    break;
+		                }
+		            }
+		            if (flag) {
+		                result.push(element);
+		            }
+		        }
+		        return result;
+		    }
+		}
+
+		var users = getElementsByClassName(document, 'user');
+		alert(users.length + ' users');
+
+		// var lastUser = getElementsByClassName(document, 'user last')[0];
+		// alert('last user is ' + lastUser.innerText);
+    </script>
+</body>
+</html>
