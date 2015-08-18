@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>property types</title>
+</head>
+<body>
+	<form action="">
+		<input class="u-txt" maxlength="10" disabled onclick="showSuggest();">
+	</form>
+	<script>
+		var input = document.getElementsByTagName('input')[0];
+		function showSuggest(){}
+		
+
+		alert('class attribute的类型是：' + typeof(input.getAttribute('class')));
+		alert('maxlength attribute的类型是：' + typeof(input.getAttribute('maxlength')));
+		alert('disabled attribute的类型是：' + typeof(input.getAttribute('disabled')));
+		alert('onclick attribute的类型是：' + typeof(input.getAttribute('onclick')));
+	</script>
+</body>
+</html>

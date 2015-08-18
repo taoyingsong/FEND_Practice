@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<style>
+		body, button, input, legend{margin: 0;padding: 0;font: 16px "微软雅黑";}
+		.m-form{margin: 150px auto 0;width: 325px;border: 1px solid #ddd;}
+		.m-form legend{width: 100%;line-height: 30px;text-indent: 1em;color: #fff;background-color: #2d2d2d;}
+		.m-form fieldset{border: none;padding: 20px;}
+		.m-form div{margin: 20px;}
+		.m-form .u-txt{width: 160px;padding: 3px;}
+		button{width: 100%;height: 30px;color: #fff;border: 1px solid #ddd;cursor: pointer;background-color: #2d7dca;}
+		.disabled{cursor: default;background-color: #ddd;}
+
+	</style>
+</head>
+<body>
+	<form action="" class="m-form">
+		<legend>手机号码登录</legend>
+		<fieldset>
+			<div>
+				<label for="userName">用户名：</label>
+				<input id="userName" type="text" class="u-txt">
+			</div>
+			<div>
+				<label for="password">密　码：</label>
+				<input id="password" type="password" class="u-txt">
+			</div>
+			<div><button id="login">登　录</button></div>
+		</fieldset>
+	</form>
+	<script>
+		var button = document.getElementById('login');
+		button.onclick = function(){
+			button.disabled = true;
+			button.setAttribute('class', 'disabled');
+		};
+	</script>
+</body>
+</html>
