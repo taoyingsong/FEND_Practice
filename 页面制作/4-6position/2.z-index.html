@@ -1,0 +1,23 @@
+	<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>z-index</title>
+	<style>
+		.sample0, .sample1{position: absolute;width: 200px;line-height: 150px;text-align: center;}
+		.sample0{background-color: #ff0;}
+		.sample1{background-color: pink;}
+
+		.sample1{top: 100px;left: 100px;}
+			
+		/*.sample0{z-index: 9;}*/
+
+		/*.container0, .container1{position: relative;}*/
+		/*.container1{z-index: 99;}*/
+	</style>
+</head>
+<body>
+	<div class="container0"><div class="sample0">sample 0</div></div>
+	<div class="container1"><div class="sample1">sample 1</div></div>
+</body>
+</html>
