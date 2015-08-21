@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>backface-visibility</title>
+<link rel="stylesheet" href="demo.css"/>
+<style type="text/css">
+.m-demo{perspective:2000px;}
+.m-demo > div{transform-style:preserve-3d;position:absolute;top:0;left:0;width:100%;height:100%;}
+.m-demo pre{font-size:200px;text-align:center;}
+.m-demo pre:first-child{transform:rotateY(180deg) translateZ(1px);}
+.m-demo pre:last-child{transform:none;}
+
+.m-demo-1 > div{transform:rotateY(45deg);}
+.m-demo-2 > div{transform:rotateY(45deg);}
+.m-demo-3 > div{transform:rotateY(135deg);}
+.m-demo-backface pre{backface-visibility:hidden;}
+</style>
+</head>
+<body>
+<div class="m-demo m-demo-1">
+    <div>
+        <pre>E</pre>
+    </div>
+</div>
+<div class="m-demo m-demo-2">
+    <div>
+        <pre>C</pre>
+        <pre>E</pre>
+    </div>
+</div>
+<div class="m-demo m-demo-3">
+    <div>
+        <pre>C</pre>
+        <pre>E</pre>
+    </div>
+</div>
+<div class="m-demo m-demo-2 m-demo-backface">
+    <div>
+        <pre>C</pre>
+        <pre>E</pre>
+    </div>
+</div>
+<div class="m-demo m-demo-3 m-demo-backface">
+    <div>
+        <pre>C</pre>
+        <pre>E</pre>
+    </div>
+</div>
+</body>
+</html>
