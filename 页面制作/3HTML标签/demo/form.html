@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form标签Demo</title>
+  <style>
+  body{padding: 50px;}
+  .m-form{min-height:400px;_height:400px;font-size:12px;}
+  .m-form fieldset{margin:10px 0;width:370px;padding:10px;border:1px solid #ffe1a8;background-color:#fffbf2;}
+  .m-form thead th{padding-bottom:5px;font-weight:bold;}
+  .m-form th, .m-form td{padding:2px;vertical-align:top;}
+  .m-form label{margin:0 15px 0 4px;_margin-left:0;}
+  .m-form select{width:100px;}
+  .m-form .txt{width:200px;}
+  .m-form textarea{width:202px;}
+  .m-form .btn{width:75px;height:28px;}
+  .m-form  div{margin:5px 0;}
+  </style>
+</head>
+<body>
+  <form action="/login"  method="post" class="m-form">
+    <fieldset>
+      <legend>照片选择</legend>
+      <label for="file">选择照片</label><input type="file" id="file">
+    </fieldset>
+    <fieldset>
+      <legend>综合设置</legend>
+      <div>选择尺寸：</div>
+      <div>
+        <input class="cb" type="checkbox" name="size" id="cb_0" value="5"><label for="cb_0" checked>5寸</label>
+        <input class="cb" type="checkbox" name="size" id="cb_1" value="6"><label for="cb_1">6寸</label>
+      </div>
+      <div>选择相纸：</div>
+      <div>
+        <input class="rd" type="radio" name="material" id="rd_0" value="fushi"><label for="rd_0" >富士</label>
+        <input class="rd" type="radio" name="material" id="rd_1" value="keda"><label for="rd_1" >柯达</label>
+      </div>
+      <div>
+        <label for="delivery">配送方式：</label>
+        <select id="delivery">
+            <option value="0">快递</option>
+            <option value="1">EMS</option>
+            <option value="2" selected>平邮</option>
+        </select>
+      </div>
+      <div>
+        <label for="description">商品描述：</label>
+        <input class="txt" type="text" id="description" placeholder="描述">
+      </div>
+      <div>
+        <label for="feedback">意见反馈：</label>
+        <textarea name="feedback" rows="4" id="feedback"></textarea>
+      </div>
+    </fieldset>
+    <div>
+      <button type="submit">提交</button>
+      <button type="reset">重置</button>
+    </div>
+  </form>
+</body>
+</html>

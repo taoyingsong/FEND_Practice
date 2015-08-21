@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>链接到内部锚点</title>
+  <style>
+    div{
+      line-height: 30px;
+      padding: 20px;
+    }
+    .top{
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      line-height: 30px;
+      background: #ccc;
+      text-decoration: none;
+    }
+    .cnt{
+      margin: 50px 0;
+      line-height: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div id="top"></div>
+
+  <h2>链接到内部文档</h2>
+  <div>
+    <a href="#html">html</a>
+    <a href="#css">css</a>
+  <div>
+
+  <h3 id="html">HTML</h3>
+  <div class="cnt">
+    超文本标记语言（英文：HyperText Markup Language，HTML）是为“网页创建和其它可在网页浏览器中看到的信息”设计的一种标记语言。HTML被用来结构化信息——例如标题、段落和列表等等，也可用来在一定程度上描述文档的外观和语义。1982年由蒂姆·伯纳斯-李创建，由IETF用简化的SGML（标准通用标记语言）语法进行进一步发展的HTML，后来成为国际标准，由万维网联盟（W3C）维护。早期的HTML语法规则定义较为松散，这有助于不熟悉网络出版的人使用或变更。网页浏览器接受这类的文件，使之可以显示语法不严格的网页。随着时间的流逝，官方标准渐渐趋于严格的语法，但是浏览器继续显示一些仍不合乎标准的HTML。使用XML的严格规则的XHTML（可扩展超文本标记语言）是W3C计划中的HTML的接替者。虽然很多人认为它已经成为当前的HTML标准，但是它实际上是一个独立的、和HTML平行发展的标准。W3C目前建议使用XHTML 1.1、XHTML 1.0或者HTML 4.01标准编写网页，但已有许多网页转用较新的HTML5编码撰写（如Google）。
+  </div>
+  <h3 id="css">CSS</h3>
+  <div class="cnt">
+    层叠样式表（英语：Cascading Style Sheets，简写CSS），又称串样式列表、层次结构式样式表文件，一种用来为结构化文档（如HTML文档或XML应用）添加样式（字体、间距和颜色等）的计算机语言，由W3C定义和维护。目前最新版本是CSS2.1，为W3C的推荐标准。CSS3现在已被大部分现代浏览器支持，而下一版的CSS4仍在开发过程中。
+    网页的读者和作者都可以使用CSS来决定文件的颜色、字体、排版等显示特性。CSS最主要的目的是将文件的内容与显示分隔开来。这有许多好处：文件的可读性加强,文件的结构更加灵活, 作者和读者可以自己决定文件的显示, 文件的结构简化了。
+  </div>
+
+  <a class="top" href="#top">top</a>
+</body>
+</html>

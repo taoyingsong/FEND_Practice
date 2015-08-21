@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Video标签Demo</title>
+  <style>
+    video{
+      width: 400px;
+    }
+  </style>
+</head>
+<body>
+<div>
+  <video controls poster="./res/poster.jpg"  >
+    <source src="./res/video.mp4" type="video/mp4">
+    <track kind="subtitles" src="./res/video.vtt" srclang="cn" label="cn">
+    Your browser does not support the video tag.
+  </video>
+</div>
+</body>
+</html>
