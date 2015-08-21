@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>float的元素在同一文档流中</title>
+	<style>
+		body{border: 1px solid red;}
+		div{line-height: 50px;}
+		.sample0{background-color: blue;}
+		.sample1{background-color: pink;}
+		.sample2{background-color: green;}
+
+		/*div{float: left;}*/
+	</style>
+</head>
+<body>
+	<div class="sample0">float: left;</div>
+	<div class="sample1">float: left;</div>
+	<div class="sample2">float: left;</div>
+</body>
+</html>

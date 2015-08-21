@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>float元素半脱离文档流</title>
+	<style>
+		body{width: 300px;padding: 5px;line-height: 1.6;border: 1px dashed blue;}
+		.sample{height: 100px;margin-right: 5px;padding: 0 5px;line-height: 100px;background-color: pink}
+		.sb{background-color: #eee;}
+
+		/*.sb{outline: 1px dashed red;}*/
+
+		/*.sample{float: left;}*/
+	</style>
+</head>
+<body>
+	<div class="sample">float: left;</div>
+	<div class="sb">A float is a box that is shifted to the left or right on the current line. The most interesting characteristic of a float (or "floated" or "floating" box) is that content may flow along its side (or be prohibited from doing so by the 'clear' property). </div>
+</body>
+</html>

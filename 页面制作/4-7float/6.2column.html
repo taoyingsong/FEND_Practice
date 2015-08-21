@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>两列布局</title>
+	<style>
+		html, body, .body, .main, .side{margin: 0;padding: 0;height: 100%;}
+		.body{width: 960px;margin: 0 auto;}
+		.main{background-color: pink;}
+		.side{background-color: #eee;}
+
+		/*.main{float: left;width: 660px;}*/
+		/*.side{float: right;width: 300px;}*/
+		/*.clearfix:after{content:'.';display: block;clear: both;height: 0;overflow: hidden;visibility: hidden;}*/
+	</style>
+</head>
+<body>
+	<div class="body clearfix">
+		<div class="main">main</div>
+		<div class="side">side</div>
+	</div>
+</body>
+</html>
