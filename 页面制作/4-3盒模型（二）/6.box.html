@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>size</title>
+<link rel="stylesheet" href="demo.css"/>
+<style type="text/css">
+.g-doc{padding:20px;font-size:12px;line-height:20px;color:#666;}
+
+.m-box{
+  width:100%;
+  padding:5px 10px 10px 15px;
+  max-height:200px;
+  margin:10px;
+  border:1px solid #ddd;
+  box-sizing:border-box;
+  overflow:auto;
+  border-radius:15px;
+  box-shadow:inset 0 0 5px 2px rgba(255,0,0,0.5),0 0 5px 5px rgba(0,0,0,0.5);
+  outline:5px dashed #000;
+  outline-offset:10px;
+	background:#fff;
+}
+
+.m-box1{
+  width:250px;
+  padding:5px;
+  border:1px solid #0f0;
+  border-top:5px solid #f00;
+  margin:20px 10px;
+  background:#333;
+  -webkit-box-shadow:0 0 5px 2px #fa0;
+  box-shadow:0 0 5px 2px #fa0;
+}
+</style>
+</head>
+<body>
+ 
+<div class="g-doc">
+  <div class="m-box1"><img src="avatar.jpg" class="img" /></div>
+  <div class="m-box">
+    <h2>原理</h2>
+    先说说我们在网页设计中常听的属性名：内容(content)、填充(padding)、边框(border)、边界(margin)， CSS盒子模式都具备这些属性。
+这些属性我们可以把它转移到我们日常生活中的盒子（箱子）上来理解，日常生活中所见的盒子也就是能装东西的一种箱子，也具有这些属性，所以叫它盒子模式。每个盒子都有：边界、边框、填充、内容四个属性；
+    <h2>特点</h2>
+每个属性都包括四个部分：上、右、下、左；这四部分可同时设置，也可分别设置；里的抗震辅料厚度，而边框有大小和颜色之分，我们又可以理解为生活中所见盒子的厚度以及这个盒子是用什么颜色材料做成的，边界就是该盒子与其它东西要保留多大距离。
+    <h2>结构</h2>
+    内容（CONTENT）就是盒子里装的东西；
+而填充(PADDING)就是怕盒子里装的东西（贵重的）损坏而添加的泡沫或者其它抗震的辅料；
+边框(BORDER)就是盒子本身了；至于边界(MARGIN)则说明盒子摆放的时候的不能全部堆在一起，要留一定空隙保持通风，同时也为了方便取出。在网页设计上，内容常指文字、图片等元素，但是也可以是小盒子（DIV嵌套），与现实生活中盒子不同的是，现实生活中的东西一般不能大于盒子，否则盒子会被撑坏的，而CSS盒子具有弹性，里面的东西大过盒子本身最多把它撑大，但它不会损坏的。
+填充只有宽度属性，可以理解为生活中盒子每个HTML标记都可看作一个盒子；
+  </div>
+</div> 
+</body>
+</html>
