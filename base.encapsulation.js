@@ -144,3 +144,25 @@ function setCookie(name, value, expires, path, domain, secure) {
  	+ '; domain=' + domain
  	+ '; max-age=0';
  }
+
+ /*动画函数
+ 下边代码是以px为基本单位的所以透明度和旋转还要在这个基础上做一定的改造
+  */
+ var animation = function(ele, attr, from, to) {
+    var distance = Math.abs(to - from);
+    var stepLength = distance /100;
+    var sign = (to - from) / distance;
+    var offset = 0;
+    var step = function() {
+        var tmpOffset = offset + stepLength;
+        if(tmpOffset < distance) {
+            ele.style[attr] = from + tmpOffset * sign + 'px';
+            offset = tmpOffset;
+        } else {
+            ele.style[attr] = to + 'px';
+            clearInterval(intervalID);
+        }
+    }
+    ele.style[attr] = from + 'px';
+    var intervalID = setInterval(step, 10);
+ }
