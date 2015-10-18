@@ -1,0 +1,376 @@
+
+/**
+ * lagou
+ */
+数组中有哪些方法？
+
+ 1、<span> 元素的margin-top、margin-bottom不起效，其余的margin和四个方向的padding都起效。
+ 2、10行500px块状元素、10个500px内联元素,内容超过一行(默认全屏宽度)时都会换行，
+ 	当拖动缩小容器宽度时内容还都会换行。但是英文貌似不会换行...
+ 3、单单json数据的话是不能有函数类型的：可以在不同语言中传递，如果是函数，那么非js语言怎么明白其中的语法呢。
+	但是：如果只在js中传递，那到可以。但是要把先把存进去的函数当成字符串来写，然后取出来的时候用eval函数进行动态执行。
+
+ 	<script type="text/javascript">
+	var length = 5; 
+	function fn() {
+		alert(this.length);
+	}
+	var obj = {
+		length: 10,
+		method: function(fn) {
+			//没有指明this，所以上边的为window中的
+			fn();
+			//调用者为arguments，所以上边this.length为参数的长度
+			arguments[0]();
+		}
+	}
+	obj.method(fn);
+	</script>
+ 4、
+ 自己写json的js对象转换转换为json字符串
+/**
+ * leshi
+ */
+
+1、左定宽，右自适应布局
+
+2、数组去重
+<script type="text/javascript">
+	function unique(arr) {
+		var result = [];
+		var	hash = {}; 
+		for(var i = 0, length = arr.length; i < length; i++) {
+			//这里用hash.key方式存储不行，只能用hash[key]存储，这里考虑到了类型，否则6和"6"区分不开
+			var key = typeof(arr[i]) + arr[i];
+			if(!hash[key]) {
+				result.push(arr[i]);
+				hash[key] = true;
+			}
+		}
+		return result;
+	}
+	console.log(unique([3,4,5,5,6,5,6,"6",2,3,4,5,7]));
+</script>
+
+3、ajax
+
+/**
+ * netease
+ */
+
+Part1:
+
+1、下边没有冒泡的事件是？
+A:change B:blur C:mousemove
+PS:mouseenter mouseleave blur focus focusin focusout resize 等
+
+2、cookie和本地存储：
+cookie随着http请求发出,
+本地存储兼容性>=ie8,cookie都基本都兼容
+cookie比本地存储安全性高
+
+3、
+<script type="text/javascript">
+	var arr = [];	
+	var f = function() {
+		for(var i = 0; i < 3; i++) {
+			arr.push(function() {
+				return i;
+			});
+		}
+	}
+	f();
+	console.log(arr[0]() + arr[2]());
+</script>
+
+4、
+正则中的d和\d是不同的，，
+
+5、
+部署方案和遇到的坑
+
+6、
+移动端的兼容坑
+
+大题：
+1、去除前后空格
+<script type="text/javascript">
+	function trim(str) {
+		return str.replace(/(^\s*|\s*$)/g, "");
+	}
+</script>
+
+2、[2-32]之间随机取数
+<script type="text/javascript">
+	function upsetArray(start, end, length) {
+		var arr = [];
+		for(var i = 0; start <= end; i++, start++) {
+			arr[i] = start;
+		}
+		arr.sort(function() {return 0.5 - Math.random();});
+		console.log(arr);
+		return arr.slice(0, length);
+	}
+	var needArr = upsetArray(2, 32, 5);
+	console.log(needArr);
+</script>
+
+
+
+Part2:
+
+1、DOM节点的创建、插入、删除、查找、替换、复制
+A、创建：
+	var oDiv = document.createElement('div');
+B、插入：
+	document.body.appendChild(oDiv);
+
+	var oP = document.createElement('p');
+	document.body.insertBefore(oP, oDiv);
+C、删除:
+	document.body.removeChild(oP);
+D、查找:
+	<body>
+		<div id="box"></div>
+	</body>
+	var oDiv = document.getElementById('box');
+
+	var oDiv = document.getElementsByTagName('div')[0];
+E、替换:
+	var oSpan = document.createElement('span');	
+	document.body.replaceChild(oSpan, oBox);//用span标签替换div标签
+	||
+	<ul id="nums"><li>1</li><li>2</li><li>3</li></ul>
+	nums.replaceChild(nums.lastChild, nums.firstChild);
+	结果：<ul id="nums"><li>3</li><li>2</li></ul>
+F、复制
+	var oClone = oNode.cloneNode(true);//复制oNode元素
+
+2、
+width:内容宽 , clientWidth:width + padding, offsetWidth:控件自身实际占据的宽度,整型,单位px
+
+3、
+mouseeneter:不论鼠标指针穿过被选元素或其子元素，都会触发 mouseover 事件。对应mouseout
+mouseover:只有在鼠标指针穿过被选元素时，才会触发 mouseenter 事件。对应mouseleave
+
+4、
+repaint 和 reflow
+http://www.blueidea.com/tech/web/2011/8365.asp
+
+5、relative absolute fix
+ static：无特殊定位，对象遵循正常文档流。top，right，bottom，left等属性不会被应用。
+ relative：对象遵循正常文档流，但将依据top，right，bottom，left等属性在正常文档流中偏移位置。而其层叠通过z-index属性定义。只原元素在文档流中占位，设置left，top等变动后的部分不占位。
+ absolute：对象脱离正常文档流，使用top，right，bottom，left等属性进行绝对定位。而其层叠通过z-index属性定义。
+ fixed：对象脱离正常文档流，使用top，right，bottom，left等属性以窗口为参考点进行定位，当出现滚动条时，对象不会随着滚动。而其层叠通过z-index属性定义。
+
+ 什么是文档流？
+      将窗体自上而下分成一行行, 并在每行中按从左至右的顺序排放元素,即为文档流。
+      只有三种情况会使得元素脱离文档流，分别是：float、absolute和fix。
+ http://blog.csdn.net/chen_zw/article/details/8741365
+
+6、
+数组打乱
+
+7、
+轮播都能显示的那种:
+三个元素的履带长度，配合前后的删除追加操作。
+
+8、
+输入0 输出1 输入1 输出0:4中思路如下：
+A、if,if直接判断  
+B、条件语句
+C、对象或者数组的事先约定
+D、Number(boolean值);
+	<script type="text/javascript">
+		function test(str) {
+				return Number(!str);
+		}
+		alert(test(1));
+		alert(test(0));
+	</script>
+
+9、
+居中margin 负值
+
+10、大题：
+还是闭包奈个
+<script type="text/javascript">
+ 		var a = 1;
+		function cc() {
+			a = 3;
+			return ;
+			function a() {
+
+			}
+		}
+		cc();
+		alert(a);
+
+
+
+		var value = 1;
+		var obj = {
+			key : {
+				value : 3,
+				method : function() {
+					alert(this.value);
+				}
+			}
+		}
+		var test = obj.key.method;
+		test();
+		obj.key.method();
+
+
+
+		var arr = [1,2,3,4,5];
+		var a = [];
+		for(var i = 0, length = arr.length; i < length; i++) {
+			a.push(function(){alert(i)});
+		}
+		a[3]();
+</script>
+
+我的问题，兼容到多少？
+
+
+
+
+
+
+/**
+ * momo
+ */
+1、
+<script type="text/javascript">
+	function A() {
+		this.a = 1;
+		this.b = 2;
+		return {c: 3}
+		// return 1;
+	}
+	var x = new A();
+	console.log(x.a);
+	console.log(x.b);
+	console.log(x.c);
+</script>
+
+2、
+0 == null
+null == false
+
+3、
+Object.create可以实现不共享的继承
+
+4、
+想想下百度
+搜索框，弹出位置的布局，点击时的实时响应办法：100ms循环内若有点击重新计时，否则触发时间
+提示文字的实时更新：~ setTimeout(~, 100);//有输入重置为100
+
+5、
+浏览器的标准模式和怪异模式
+
+6、
+元素居中布局，child外可以加层结构用relative:-50%;处理
+
+7、
+linux 替换全文中所有某个字符 \s什么的
+异步ajax就是ajax调用之后还可以.
+
+9、
+<script type="text/javascript">
+	var a = 3;
+	//1
+	function() {
+		//2
+		var a = 10;
+		//3
+	}
+	//4
+	4个位置a的值，变换a的定义后a的值
+</script>
+
+/**
+ * 其他
+ */
+
+ * 实践小问题
+chrome中项目必须部署在服务器中才可以读取到cookie
+
+
+ 1、html头中有什么
+ 2、cookie、本地存储 ,document.cookie读写 安全性
+ 3、ajax
+ 4、跨域
+ 5、JSON(结构，有没有函数？) 
+ 6、闭包
+ 7、数据类型
+ 8、前端性能优化
+ 9、h5、css3的标签属性列出5个以上:border-radius、transform|translate、transition、animation、flex
+10、继承
+11、模块化
+12、url中参数解析   decodeURIComponent、encodeURIComponent
+13、浏览器的内核，navigator.userAgent如何判断浏览器 
+14、this(5种能背出来)
+15、正则
+16、写个tab切换效果
+17、行级、块级元素列举区别
+18、fix、relative、absolute解释
+19、头部 viewport 那句的解释
+20、离职原因
+21、选择一个公司，看中公司什么
+22、独生子女，父母工作
+23、期望薪资
+24、职业规划
+25、分析是前台后台哪里影响速度时可以f12中加载速度看
+ 	<script type="text/javascript">
+		/* 不按顺序依次输出，5个不同的单线程执行的顺序可能不一样 */
+		var handler = function(i) {
+			return setTimeout(function() {
+				alert(i);
+			}, 1000);
+		}
+		for(var i = 0; i < 5; i++ ) {
+			handler(i);
+		}
+
+		/* js是单线程的所以下边的不会输出 */
+		var flag = true; 
+		setTimeout(function(){
+			console.log(1);
+			flag = false;
+		}, 100);
+		while(flag){}
+		console.log("abc");
+		左边不固定，右边自适应
+		html头，数组split,replace
+
+
+
+		var str = "fasdfa";
+		console.log(str[5]); //"a"
+		console.log(str[7]);//undefined
+		console.log(str.slice(7,8));//不会报错，值为：""
+
+
+
+		var test = "h,e,l,l,o;w,o,r,l,d";
+		var arr = test.split(';');
+		for(var i = 0; i < arr.length; i++) {
+			arr[i] = arr[i].split(',');
+		}
+		alert(arr);
+
+
+
+		function classA() {
+
+		}
+		function classB() {
+			classA.apply(this, argument);
+		}
+		classB.prototype = Object.create(classA.prototype);
+		classB.prototype.constructor = classB;
+
+	</script>
+

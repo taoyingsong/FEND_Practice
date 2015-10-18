@@ -1,0 +1,80 @@
+/**
+ * netease
+ */
+没有冒泡的事件
+change,blur,mousemove
+
+cookie和本地存储
+cookie随着http请求发出
+本地存储兼容性ie8+,cookie都基本都兼容
+
+正则中的d和\d是不同的，，
+
+大题：
+去除前后空格
+[2-32]之间随机取数
+
+部署方案和遇到的坑
+移动端的兼容坑
+	<script type="text/javascript">
+		/* 不按顺序依次输出，5个不同的单线程执行的顺序可能不一样 */
+		// var handler = function(i) {
+		// 	return setTimeout(function() {
+		// 		alert(i);
+		// 	}, 1000);
+		// }
+		// for(var i = 0; i < 5; i++ ) {
+		// 	handler(i);
+		// }
+
+		/* js是单线程的所以下边的不会输出 */
+		// var flag = true; 
+		// setTimeout(function(){
+		// 	console.log(1);
+		// 	flag = false;
+		// }, 100);
+		// while(flag){}
+		// console.log("abc");
+	//左边不固定，右边自适应
+	//html头，数组split,replace
+
+	// var str = "fasdfa";
+	// console.log(str[5]); //"a"
+	// console.log(str[7]);//undefined
+	// console.log(str.slice(7,8));//不会报错，值为：""
+
+	// var test = "h,e,l,l,o;w,o,r,l,d";
+	// var arr = test.split(';');
+	// for(var i = 0; i < arr.length; i++) {
+	// 	arr[i] = arr[i].split(',');
+	// }
+	// alert(arr);
+
+
+	var arr = [];	
+	var f = function() {
+		for(var i = 0; i < 3; i++) {
+			arr.push(function() {
+				return i;
+			});
+		}
+	}
+	f();
+	console.log(arr[0]() + arr[2]());
+
+	console.log(('  	\
+	   fds     ff d  fadf      ').replace(/(^\s*)|(\s*$)/g, ""));
+	('').replace(/(^\s*)|(\s*$)/g, "");
+	</script>
+
+/**
+ * momo
+ */
+linux 替换全文中所有某个字符
+搜索框，弹出位置的布局，点击时的实时响应办法：100ms循环内若有点击重新计时，否则触发时间
+
+
+
+
+
+
